@@ -31,6 +31,7 @@
 
 #include <stdarg.h>
 #include <stdio.h>
+#include <time.h>
 
 #include <FreeRTOS.h>
 #include <semphr.h>
@@ -45,11 +46,15 @@ void console_init(void)
 
 void console_print(const char *fmt, ...)
 {
+    char buff[60];
+    time_t t = time(NULL);
+    strftime(buff, 60, "%T", localtime(&t));
     va_list vargs;
 
     va_start(vargs, fmt);
-    
+
     xSemaphoreTake(xStdioMutex, portMAX_DELAY);
+    printf("%s: ", buff);
 
     vprintf(fmt, vargs);
 
