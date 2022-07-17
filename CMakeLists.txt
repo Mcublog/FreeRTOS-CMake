@@ -53,9 +53,9 @@ add_definitions(-DprojCOVERAGE_TEST=0)
 add_definitions(-D_WINDOWS_)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -ggdb3 -O0")
 
-# -> LDFLAGS := -ggdb3 -O0 -pthread
+# -> LDFLAGS := -ggdb3 -O0
 # pthread included after
-set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -ggdb3 -O0 -pthread")
+set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -ggdb3 -O0")
 
 # Debug
 message("Project: ${PROJECT_NAME}")
@@ -75,4 +75,4 @@ add_library(freertos STATIC ${FREERTOS_SOURCES})
 target_link_libraries(${PROJECT_NAME} freertos)
 
 ## Add pthread
-# target_link_libraries(${PROJECT_NAME} pthread)
+target_link_libraries(${PROJECT_NAME} pthread)
